@@ -20,7 +20,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'yx1s7q@if-k=0qbn@c$t1mz1!7g0_os_6b%hdk96an8=(-#jzg'
+SECRET_KEY = os.getenv("SECRET_KEY")
+TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
+TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
+TWILIO_NUMBER = os.getenv("TWILIO_NUMBER")
+SMS_BROADCAST_TO_NUMBERS = [ 
+    os.getenv("SMS_BROADCAST_NUMBER_1"), 
+    os.getenv("SMS_BROADCAST_NUMBER_2"), 
+    os.getenv("SMS_BROADCAST_NUMBER_3"), 
+]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,6 +39,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'broadcast',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
